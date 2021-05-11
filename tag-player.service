@@ -1,0 +1,14 @@
+[Unit]
+Description= NFC tag reader music player
+After=network.target
+
+[Service]
+ExecStart=/home/pi/nfc/tag-player/tag-player
+WorkingDirectory=/home/pi/nfc/tag-player
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target

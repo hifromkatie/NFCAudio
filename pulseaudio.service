@@ -1,0 +1,19 @@
+# This will only work if you turn off authentication in Pulseaudio
+# In /etc/pulse/system.pa find the line
+#
+# load-module module-native-protocol-unix
+#
+# Add a new option to the end of that line so it says:
+#
+# load-module module-native-protocol-unix auth-anonymous=1
+
+[Unit]
+Description=PulseAudio System server (https://rudd-o.com/linux-and-free-software/how-to-make-pulseaudio-run-once-at-boot-for-all-your-users)
+
+[Service]
+Type=notify
+ExecStart=pulseaudio --daemonize=no --system --realtime --log-target=journal
+Group=audio
+
+[Install]
+WantedBy=multi-user.target
